@@ -1,7 +1,7 @@
 from wtforms import Form
 from wtforms import validators
 from wtforms import StringField, PasswordField, BooleanField, TextAreaField
-from wtforms.fields.html5 import EmailField
+from wtforms.fields import EmailField
 
 from .models import User
 
@@ -14,7 +14,7 @@ class LoginForm(Form):
         validators.length(min=4, max=50, message='El username se encuentra fuera de rango')
     ])
     password = PasswordField('Password', [
-        validators.Required(message='El password es requerido.')
+        validators.DataRequired(message='El password es requerido.')
     ])
 
 class RegisterForm(Form):
@@ -24,11 +24,11 @@ class RegisterForm(Form):
     ])
     email = EmailField('Email', [
         validators.length(min=6, max=100),
-        validators.Required(message='El email es requerido.'),
+        validators.DataRequired(message='El email es requerido.'),
         validators.Email(message='Ingre un email valido.')
     ])
     password = PasswordField('Password', [
-        validators.Required('El password es requerido.'),
+        validators.DataRequired('El password es requerido.'),
         validators.EqualTo('confirm_password', message='La contraseña no coincide.')
     ])
     confirm_password = PasswordField('Confirm password')

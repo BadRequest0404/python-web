@@ -1,4 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block container %}
+<div class="col-md-12">
+    <h1>Welcome to Task Manager</h1>
+    {% if current_user.is_authenticated %}
+        <p>View your <a href="{{ url_for('.tasks') }}">tasks</a> or create a <a href="{{ url_for('.new_task') }}">new task</a>.</p>
+    {% else %}
+        <p>Please <a href="{{ url_for('.login') }}">login</a> or <a href="{{ url_for('.register') }}">register</a> to manage your tasks.</p>
+    {% endif %}
+</div>
 {% endblock %}
